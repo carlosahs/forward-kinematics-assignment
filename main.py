@@ -22,15 +22,17 @@ class Matrix:
         # TODO
         # * Implement Strassen algorithm
 
-        assert self._ROWS == matrix._COLS
+        assert self._COLS == matrix._ROWS
 
-        mult = Matrix(matrix._ROWS, self._COLS)
+        mult = Matrix(self._ROWS, matrix._COLS)
 
-        # Really slow!
-        for i in range(self._COLS):
-            for j in range(matrix._ROWS):
-                for k in range(self._ROWS):
-                    pass
+        # Really slow!    
+        for i in range(self._ROWS):            
+            for j in range(matrix._COLS):
+                coordinate = (i, j)
+
+                for k in range(self._COLS):
+                    mult.update(coordinate, mult.at(coordinate) + self.at((i, k)) * matrix.at((k, j)))
 
         return mult
 
