@@ -25,9 +25,12 @@ def FK(L: Vector, q: Vector) -> Vector:
 
     angle_sum: float = sum(q)
 
+    L1 = L[0]
+    L2 = L[1]
+
     P = [
-        math.cos(angle_sum), -math.sin(angle_sum), 0, L[0] * math.cos(angle_sum),
-        math.sin(angle_sum), math.cos(angle_sum), 0, L[1] * math.sin(angle_sum),
+        math.cos(angle_sum), -math.sin(angle_sum), 0, L1 * math.cos(angle_sum) + L1 * math.cos(q[0]),
+        math.sin(angle_sum), math.cos(angle_sum), 0, L2 * math.sin(angle_sum) + L2 * math.sin(q[0]),
         0, 0, 1, 0,
         0, 0, 0, 1
     ]
