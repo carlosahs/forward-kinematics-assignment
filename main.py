@@ -1,6 +1,7 @@
 import math
 
 from typing import List
+from typing_extensions import Self
 
 Vector = List[float]
 
@@ -13,6 +14,24 @@ class Matrix:
         self._COLS = cols
         self._values = [0.] * self._ROWS * self._COLS
 
+    def multiplication(self, matrix: Self):
+        # TODO
+        # * Implement Strassen algorithm
+
+        assert matrix._ROWS == self._ROWS
+        assert matrix._COLS == self._COLS
+
+        # Really slow!
+        for i in range(self._ROWS):
+            for j in range(self._COLS):
+                for k in range(self._ROWS):
+                    pass
+
+    def from_list(self, l: List[float]):
+        pass
+
+    def at(self, coordinate: Tuple[int, int]) -> float:
+        return self._values[self._COLS * coordinate[0] + coordinate[1]]
 class Rotation_Matrix:
     pass
 
