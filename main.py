@@ -39,6 +39,9 @@ class Matrix:
 
     def at(self, coordinate: Tuple[int, int]) -> float:
         return self._values[self._get_index(coordinate)]
+
+    def update(self, coordinate: Tuple[int, int], value: float):
+        self._values[self.at(coordinate)] = value
 class Rotation_Matrix:
     pass
 
