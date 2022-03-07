@@ -4,6 +4,21 @@ from typing import List
 
 Vector = List[float]
 
+class Translation_Vector:
+    pass
+
+class Matrix:
+    def __init__(self, rows: int, cols: int):
+        self._ROWS = rows
+        self._COLS = cols
+        self._values = [0.] * self._ROWS * self._COLS
+
+class Rotation_Matrix:
+    pass
+
+class Transformation_Matrix:
+    pass
+
 def FK(L: Vector, q: Vector) -> Vector:
     """
     Solves the forward kinematics of a planar 2R robot.
