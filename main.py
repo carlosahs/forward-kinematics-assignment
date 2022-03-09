@@ -41,23 +41,23 @@ def rot(axis: Axis, rad: float) -> np.ndarray:
 
 class Transformation_Matrix:
     def __init__(self) -> None:
-        self.rmatrix = np.identity(AXES)
-        self.tvector = np.zeros((AXES, 1))
+        self.rmat = np.identity(AXES)
+        self.tvec = np.zeros((AXES, 1))
 
     def rot(self, axis: Axis, rad: float) -> None:
-        self.rmatrix = np.matmul(self.rmatrix, rot(axis, rad))
+        self.rmat = np.matmul(self.rmat, rot(axis, rad))
 
     def trans(self, x: float, y: float, z: float) -> None:
-        self.tvector = np.array((x, y, z))
+        self.tvec = np.array((x, y, z))
 
     def mul(self, tmatrix: Self):
-        self.rmatrix = np.matmul(self.rmatrix, tmatrix.rmatrix),
-        self.tvector = np.matmul(self.rmatrix, self.tvector) + tmatrix.tvector
+        self.rmat = np.matmul(self.rmat, tmatrix.rmat),
+        self.tvec = np.matmul(self.rmat, self.tvec) + tmatrix.tvec
 
     def inv(self) -> Self:
         return Transformation_Matrix(
-            self.rmatrix.transpose(),
-            np.matmul(-self.rmatrix.transpose(), self.tvector)
+            self.rmat.transpose(),
+            np.matmul(-self.rmat.transpose(), self.tvec)
         )
 
 def FK(L: Tuple[int, int], q: Tuple[int, int]) -> Tuple[int, int]:
