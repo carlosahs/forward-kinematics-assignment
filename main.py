@@ -16,7 +16,8 @@ Vector = List[float]
 
 class Translation_Vector:
     def __init__(self, x: float, y: float, z: float) -> None:
-        self.vector = np.array([x, y, z])
+        # 3 by 1 vector
+        self.vector = np.array([[x], [y], [z]])
 class Rotation_Matrix:
     def __init__(self, axis: Axis) -> None:
         self.axis = axis
