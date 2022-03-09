@@ -82,13 +82,13 @@ def FK(L: Tuple[int, int], q: Tuple[int, int]) -> Tuple[int, int]:
 
     return P
 
-def GENFK(
-    a: np.ndarray, alpha: np.ndarray, d: np.ndarray, 
-    theta: np.ndarray, sigma: bool
-) -> Transformation_Matrix:
+def plot_FK(L: Tuple[int, int], q: Tuple[int, int], fk: Tuple[int, int]) -> None:
     pass
 
-def plot_FK(L: Tuple[int, int], q: Tuple[int, int], fk: Tuple[int, int]) -> None:
+def GENFK(
+    a: np.ndarray, alpha: np.ndarray,
+    d: np.ndarray, theta: np.ndarray
+) -> Transformation_Matrix:
     pass
 
 def rot2euler(R):
