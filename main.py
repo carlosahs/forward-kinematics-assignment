@@ -52,9 +52,9 @@ class Transformation_Matrix:
         self.tvec[1] += y
         self.tvec[2] += z
 
-    def mul(self, tmatrix: Self):
-        self.rmat = np.matmul(self.rmat, tmatrix.rmat),
-        self.tvec = np.matmul(self.rmat, self.tvec) + tmatrix.tvec
+    def mul(self, tmat: Self):
+        self.rmat = np.matmul(self.rmat, tmat.rmat),
+        self.tvec = np.matmul(self.rmat, self.tvec) + tmat.tvec
 
     def inv(self) -> Self:
         return Transformation_Matrix(
