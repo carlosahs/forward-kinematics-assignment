@@ -2,9 +2,15 @@ import numpy as np
 
 import math
 
+from enum import Enum
 from typing import List
 from typing import Tuple
 from typing_extensions import Self
+
+class Axis(Enum):
+    X = 'x'
+    Y = 'y'
+    Z = 'z'
 
 Vector = List[float]
 
@@ -12,7 +18,8 @@ class Translation_Vector:
     def __init__(self, x: float, y: float, z: float) -> None:
         self.vector = np.array([x, y, z])
 class Rotation_Matrix:
-    def __init__(self, axis) -> None:
+    def __init__(self, axis: Axis) -> None:
+        self.axis = axis
         self.matrix = np.identity(3)
 
 class Transformation_Matrix:
