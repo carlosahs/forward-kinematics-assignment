@@ -1,7 +1,5 @@
 import numpy as np
 
-import math
-
 from enum import Enum
 from typing import List
 from typing import Tuple
@@ -18,10 +16,34 @@ class Translation_Vector:
     def __init__(self, x: float, y: float, z: float) -> None:
         # 3 by 1 vector
         self.vector = np.array([[x], [y], [z]])
+
 class Rotation_Matrix:
     def __init__(self, axis: Axis) -> None:
         self.axis = axis
         self.matrix = np.identity(3)
+
+    def rot(self, rad: float) -> None:
+        crot = np.cos(rad)
+        srot = np.sin(rad)
+
+        if self.axis == Axis.X:
+            self.matrix[1][1] = crot
+            self.matrix[2][2] = crot
+
+            self.matrix[1][2] = -srot
+            self.matrix[2][1] = srot
+        elif self.axis == Axis.Y:
+            self.matrix[0][0] = crot
+            self.matrix[2][2] = crot
+
+            self.matrix[2][0] = -srot
+            self.matrix[0][2] = srot
+        elif self.axis == Axis.Z:
+            self.matrix[0][0] = crot
+            self.matrix[1][1] = crot
+
+            self.matrix[0][1] = -srot
+            self.matrix[1][0] = srot
 
 class Transformation_Matrix:
     pass
@@ -34,28 +56,8 @@ def FK(L: Vector, q: Vector) -> Vector:
         @P (Vector): 2 by 1 vector containing the end effector's x and y 
             coordinates expressed in the base frame.
     """
-    # TODO
-    # Make assertions more robust!
-    # Test function against several cases, including edge cases.
 
-    assert len(L) == 2, f"Expected 2 by 1 Vector, found {len(L)} by 1 Vector"
-    assert len(q) == 2, f"Expected 2 by 1 Vector, found {len(q)} by 1 Vector"
-
-    # Forward kinematics units
-    # * Translation vectors
-    # * Rotation matrices
-
-    angle_sum: float = sum(q)
-
-    L1 = L[0]
-    L2 = L[1]
-
-    P = [
-        math.cos(angle_sum), -math.sin(angle_sum), 0, L1 * math.cos(angle_sum) + L1 * math.cos(q[0]),
-        math.sin(angle_sum), math.cos(angle_sum), 0, L2 * math.sin(angle_sum) + L2 * math.sin(q[0]),
-        0, 0, 1, 0,
-        0, 0, 0, 1
-    ]
+    P = []
 
     return P
 
