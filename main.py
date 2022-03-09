@@ -15,7 +15,7 @@ Vector = List[float]
 class Translation_Vector:
     def __init__(self, x: float, y: float, z: float) -> None:
         # 3 by 1 vector
-        self.vector = np.array([[x], [y], [z]])
+        self.vector = np.array([x, y, z]).reshape(3, 1)
 
 class Rotation_Matrix:
     def __init__(self, axis: Axis) -> None:
@@ -46,7 +46,9 @@ class Rotation_Matrix:
             self.matrix[1][0] = srot
 
 class Transformation_Matrix:
-    pass
+    def __init__(self, rmatrix: Rotation_Matrix, tvector: Translation_Vector) -> None:
+        self.rmatrix = rmatrix
+        self.tvector = tvector
 
 def FK(L: Vector, q: Vector) -> Vector:
     """
