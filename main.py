@@ -91,9 +91,33 @@ def plot_FK(L: Tuple[int, int], q: Tuple[int, int], fk: Tuple[int, int]) -> None
 def GENFK(
     a: np.ndarray, alpha: np.ndarray,
     d: np.ndarray, theta: np.ndarray,
-    sigma: List[bool]
+    sigma: np.ndarray
 ) -> Transformation_Matrix:
-    pass
+    dh = Transformation_Matrix()
+
+    for thetai, di, ai, alphai, sigmai in zip(
+        np.nditer(theta), np.nditer(d),
+        np.nditer(a), np.nditer(alpha),
+        np.nditer(sigma)
+    ):        
+        thetai_tmat = Transformation_Matrix()
+        thetai_tmat.rot(Axis.Z, thetai)
+
+        di_tmat = Transformation_Matrix()
+        di_tmat.trans(0, 0, di)
+
+        ai_tmat = Transformation_Matrix()
+        ai_tmat.trans(ai, 0, 0)
+
+        alphai_tmat = Transformation_Matrix()
+        alphai_tmat.rot(Axis.X, alphai)
+
+        dh.mul(thetai_tmat)
+        dh.mul(di_tmat)
+        dh.mul(ai_tmat)
+        dh.mul(alphai_tmat)
+
+    return dh
 
 def rot2euler(R):
     pass
