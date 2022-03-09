@@ -47,8 +47,10 @@ class Transformation_Matrix:
     def rot(self, axis: Axis, rad: float) -> None:
         self.rmat = np.matmul(self.rmat, rot(axis, rad))
 
-    def trans(self, x: float, y: float, z: float) -> None:
-        self.tvec = np.array((x, y, z))
+    def trans(self, x: float, y: float, z: float) -> None:  
+        self.tvec[0] += x
+        self.tvec[1] += y
+        self.tvec[2] += z
 
     def mul(self, tmatrix: Self):
         self.rmat = np.matmul(self.rmat, tmatrix.rmat),
