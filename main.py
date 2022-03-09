@@ -90,7 +90,8 @@ def plot_FK(L: Tuple[int, int], q: Tuple[int, int], fk: Tuple[int, int]) -> None
 
 def GENFK(
     a: np.ndarray, alpha: np.ndarray,
-    d: np.ndarray, theta: np.ndarray
+    d: np.ndarray, theta: np.ndarray,
+    sigma: List[bool]
 ) -> Transformation_Matrix:
     pass
 
