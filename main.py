@@ -88,7 +88,7 @@ def GENFK(
 ) -> Transformation_Matrix:
     pass
 
-def plot_FK(fk: np.ndarray) -> None:
+def plot_FK(L: Tuple[int, int], q: Tuple[int, int], fk: Tuple[int, int]) -> None:
     pass
 
 def rot2euler(R):
