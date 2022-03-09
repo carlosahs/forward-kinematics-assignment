@@ -47,11 +47,9 @@ class Transformation_Matrix:
         self.rmatrix = rmatrix
         self.tvector = tvector
 
-    def mul(self, tmatrix: Self) -> Self:
-        return Transformation_Matrix(
-            np.matmul(self.rmatrix, tmatrix.rmatrix),
-            np.matmul(self.rmatrix, self.tvector) + tmatrix.tvector
-        )
+    def mul(self, tmatrix: Self):
+        self.rmatrix = np.matmul(self.rmatrix, tmatrix.rmatrix),
+        self.tvector = np.matmul(self.rmatrix, self.tvector) + tmatrix.tvector
 
     def inv(self) -> Self:
         return Transformation_Matrix(
