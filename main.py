@@ -50,6 +50,12 @@ class Transformation_Matrix:
         self.rmatrix = rmatrix
         self.tvector = tvector
 
+    def mul(self, tmatrix: Self) -> Self:
+        return Transformation_Matrix(
+            np.matmul(self.rmatrix, tmatrix.rmatrix),
+            np.matmul(self.rmatrix, self.tvector) + tmatrix.tvector
+        )
+
 def FK(L: Vector, q: Vector) -> Vector:
     """
     Solves the forward kinematics of a planar 2R robot.
