@@ -1,3 +1,5 @@
+import numpy as np
+
 import math
 
 from typing import List
@@ -7,45 +9,11 @@ from typing_extensions import Self
 Vector = List[float]
 
 class Translation_Vector:
-    pass
-
-class Matrix:
-    def __init__(self, rows: int, cols: int):
-        self._ROWS = rows
-        self._COLS = cols
-        self._values = [0.] * self._ROWS * self._COLS
-
-    def _get_index(self, coordinate: Tuple[int, int]) -> int:
-        return self._COLS * coordinate[0] + coordinate[1]
-
-    def multiplication(self, matrix: Self) -> Self:
-        # TODO
-        # * Implement Strassen algorithm
-
-        assert self._COLS == matrix._ROWS
-
-        mult = Matrix(self._ROWS, matrix._COLS)
-
-        # Really slow!    
-        for i in range(self._ROWS):            
-            for j in range(matrix._COLS):
-                coordinate = (i, j)
-
-                for k in range(self._COLS):
-                    mult.update(coordinate, mult.at(coordinate) + self.at((i, k)) * matrix.at((k, j)))
-
-        return mult
-
-    def from_list(self, l: List[float]):
-        pass
-
-    def at(self, coordinate: Tuple[int, int]) -> float:
-        return self._values[self._get_index(coordinate)]
-
-    def update(self, coordinate: Tuple[int, int], value: float):
-        self._values[self.at(coordinate)] = value
+    def __init__(self, x: float, y: float, z: float) -> None:
+        self.vector = np.array([x, y, z])
 class Rotation_Matrix:
-    pass
+    def __init__(self, axis) -> None:
+        self.matrix = np.identity(3)
 
 class Transformation_Matrix:
     pass
