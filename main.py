@@ -68,8 +68,8 @@ class DH_Transformation_Matrix(Transformation_Matrix):
         self.chain = ""
 
     def compute_dh(
-        self, theta: Transformation_Matrix, d: Transformation_Matrix,
-        a: Transformation_Matrix, alpha: Transformation_Matrix, sigma: bool
+        self, theta: float, d: float,
+        a: float, alpha: float, sigma: bool
     ):
         theta_tmat = Transformation_Matrix()
         theta_tmat.rot(Axis.Z, theta)
