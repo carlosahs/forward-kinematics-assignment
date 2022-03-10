@@ -14,27 +14,37 @@ class Test_rot(unittest.TestCase):
 
             crot = np.cos(theta)
             srot = np.sin(theta)
+
+            expected = np.zeros((AXES, AXES))
+            expected_indices = [i for i in range(expected.size)]
             
             if axis == Axis.X:
-                expected = np.array([
-                    1, 0, 0,
-                    0, crot, -srot,
-                    0, srot, crot
-                ]).reshape((AXES, AXES))
+                expected.put(
+                    expected_indices,
+                    [
+                        1, 0, 0,
+                        0, crot, -srot,
+                        0, srot, crot
+                    ]
+                )
             elif axis == Axis.Y:
-                expected = np.array([
-                    crot, 0, srot,
-                    0, 1, 0,
-                    -srot, 0, crot
-                ]).reshape((AXES, AXES))
+                expected.put(
+                    expected_indices,
+                    [
+                        crot, 0, srot,
+                        0, 1, 0,
+                        -srot, 0, crot
+                    ]
+                )
             elif axis == Axis.Z:
-                expected = np.array([
-                    crot, -srot, 0,
-                    srot, crot, 0,
-                    0, 0, 1
-                ]).reshape((AXES, AXES))
-            else:
-                expected = np.empty((AXES, AXES))
+                expected.put(
+                    expected_indices,
+                    [
+                        crot, -srot, 0,
+                        srot, crot, 0,
+                        0, 0, 1
+                    ]
+                )
 
             self.assertTrue(np.array_equal(expected, rot(axis, theta)))
 
@@ -48,7 +58,8 @@ class Test_rot(unittest.TestCase):
         self.rot_helper(Axis.Z)
 
 class Test_Transformation_Matrix(unittest.TestCase):
-    pass
+    def test_rot_x(self):
+        pass
 
 class Test_DH_Transformation_Matrix(unittest.TestCase):
     pass
