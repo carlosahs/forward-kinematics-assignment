@@ -56,11 +56,11 @@ class Transformation_Matrix:
         self.rmat = np.matmul(self.rmat, tmat.rmat),
         self.tvec = np.matmul(self.rmat, self.tvec) + tmat.tvec
 
-    def inv(self) -> Self:
-        return Transformation_Matrix(
-            self.rmat.transpose(),
-            np.matmul(-self.rmat.transpose(), self.tvec)
-        )
+    # def inv(self) -> Self:
+    #     return Transformation_Matrix(
+    #         self.rmat.transpose(),
+    #         np.matmul(-self.rmat.transpose(), self.tvec)
+    #     )
 
 class DH_Transformation_Matrix(Transformation_Matrix):
     def __init__(self) -> None:
