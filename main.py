@@ -41,8 +41,7 @@ def rot(axis: Axis, rad: float) -> np.ndarray:
 
 class Transformation_Matrix:
     def __init__(self) -> None:
-        self.rmat = np.identity(AXES)
-        self.tvec = np.zeros((AXES, 1))
+        self.reset()
 
     def rot(self, axis: Axis, rad: float) -> None:
         self.rmat = np.matmul(self.rmat, rot(axis, rad))
@@ -68,6 +67,10 @@ class Transformation_Matrix:
         mat[2][AXES] = self.tvec[2]
 
         return mat
+
+    def reset(self):
+        self.rmat = np.identity(AXES)
+        self.tvec = np.zeros((AXES, 1))
 
     # def inv(self) -> Self:
     #     return Transformation_Matrix(
