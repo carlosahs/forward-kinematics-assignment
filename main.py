@@ -37,7 +37,7 @@ def rot(axis: Axis, rad: float) -> np.ndarray:
         mat[0][1] = -srot
         mat[1][0] = srot
 
-    mat
+    return mat
 
 class Transformation_Matrix:
     def __init__(self) -> None:
