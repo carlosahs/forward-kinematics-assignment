@@ -62,6 +62,22 @@ class Transformation_Matrix:
             np.matmul(-self.rmat.transpose(), self.tvec)
         )
 
+class DH_Transformation_Matrix(Transformation_Matrix):
+    def __init__(self) -> None:
+        super().__init__()
+        self.chain = ""
+
+    def compute_dh(
+        self, theta: Transformation_Matrix, d: Transformation_Matrix,
+        a: Transformation_Matrix, alpha: Transformation_Matrix, sigma: bool
+    ):
+        self.mul(theta)
+        self.mul(d)
+        self.mul(a)
+        self.mul(alpha)
+
+        self.chain += "P" if sigma else "R"
+
 def FK(L: Tuple[int, int], q: Tuple[int, int]) -> Tuple[int, int]:
     """
     Solves the forward kinematics of a planar 2R robot.
@@ -93,7 +109,7 @@ def GENFK(
     d: np.ndarray, theta: np.ndarray,
     sigma: np.ndarray
 ) -> Transformation_Matrix:
-    dh = Transformation_Matrix()
+    dh = DH_Transformation_Matrix()
 
     for thetai, di, ai, alphai, sigmai in zip(
         np.nditer(theta), np.nditer(d),
@@ -112,10 +128,7 @@ def GENFK(
         alphai_tmat = Transformation_Matrix()
         alphai_tmat.rot(Axis.X, alphai)
 
-        dh.mul(thetai_tmat)
-        dh.mul(di_tmat)
-        dh.mul(ai_tmat)
-        dh.mul(alphai_tmat)
+        dh.compute_dh(thetai_tmat, di_tmat, ai_tmat, alphai_tmat, sigmai)
 
     return dh
 
