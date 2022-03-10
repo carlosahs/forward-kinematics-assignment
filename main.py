@@ -68,9 +68,21 @@ class DH_Transformation_Matrix(Transformation_Matrix):
         self.chain = ""
 
     def compute_dh(
-        self, theta_tmat: Transformation_Matrix, d_tmat: Transformation_Matrix,
-        a_tmat: Transformation_Matrix, alpha_tmat: Transformation_Matrix, sigma: bool
+        self, theta: Transformation_Matrix, d: Transformation_Matrix,
+        a: Transformation_Matrix, alpha: Transformation_Matrix, sigma: bool
     ):
+        theta_tmat = Transformation_Matrix()
+        theta_tmat.rot(Axis.Z, theta)
+
+        d_tmat = Transformation_Matrix()
+        d_tmat.trans(0, 0, d)
+
+        a_tmat = Transformation_Matrix()
+        a_tmat.trans(a, 0, 0)
+
+        alpha_tmat = Transformation_Matrix()
+        alpha_tmat.rot(Axis.X, alpha)
+
         self.mul(theta_tmat)
         self.mul(d_tmat)
         self.mul(a_tmat)
@@ -115,20 +127,8 @@ def GENFK(
         np.nditer(theta), np.nditer(d),
         np.nditer(a), np.nditer(alpha),
         np.nditer(sigma)
-    ):        
-        thetai_tmat = Transformation_Matrix()
-        thetai_tmat.rot(Axis.Z, thetai)
-
-        di_tmat = Transformation_Matrix()
-        di_tmat.trans(0, 0, di)
-
-        ai_tmat = Transformation_Matrix()
-        ai_tmat.trans(ai, 0, 0)
-
-        alphai_tmat = Transformation_Matrix()
-        alphai_tmat.rot(Axis.X, alphai)
-
-        dh.compute_dh(thetai_tmat, di_tmat, ai_tmat, alphai_tmat, sigmai)
+    ):
+        dh.compute_dh(thetai, di, ai, alphai, sigmai)
 
     return dh
 
