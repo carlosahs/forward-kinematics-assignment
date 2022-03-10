@@ -133,7 +133,7 @@ def GENFK(
     a: np.ndarray, alpha: np.ndarray,
     d: np.ndarray, theta: np.ndarray,
     sigma: np.ndarray
-) -> DH_Transformation_Matrix:
+) -> np.ndarray:
     dh = DH_Transformation_Matrix()
 
     for thetai, di, ai, alphai, sigmai in zip(
@@ -143,7 +143,7 @@ def GENFK(
     ):
         dh.compute_dh(thetai, di, ai, alphai, sigmai)
 
-    return dh
+    return dh.to_np_array()
 
 def rot2euler(R):
     pass
