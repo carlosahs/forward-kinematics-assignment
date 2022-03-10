@@ -56,6 +56,19 @@ class Transformation_Matrix:
         self.rmat = np.matmul(self.rmat, tmat.rmat),
         self.tvec = np.matmul(self.rmat, self.tvec) + tmat.tvec
 
+    def to_np_array(self) -> np.ndarray:
+        mat = np.identity(AXES + 1)
+
+        for i in range(AXES):
+            for j in range(AXES):
+                mat[i][j] = self.rmat[i][j]
+
+        mat[0][AXES] = self.tvec[0]
+        mat[1][AXES] = self.tvec[1]
+        mat[2][AXES] = self.tvec[2]
+
+        return mat
+
     # def inv(self) -> Self:
     #     return Transformation_Matrix(
     #         self.rmat.transpose(),
