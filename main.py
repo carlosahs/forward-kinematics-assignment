@@ -68,13 +68,13 @@ class DH_Transformation_Matrix(Transformation_Matrix):
         self.chain = ""
 
     def compute_dh(
-        self, theta: Transformation_Matrix, d: Transformation_Matrix,
-        a: Transformation_Matrix, alpha: Transformation_Matrix, sigma: bool
+        self, theta_tmat: Transformation_Matrix, d_tmat: Transformation_Matrix,
+        a_tmat: Transformation_Matrix, alpha_tmat: Transformation_Matrix, sigma: bool
     ):
-        self.mul(theta)
-        self.mul(d)
-        self.mul(a)
-        self.mul(alpha)
+        self.mul(theta_tmat)
+        self.mul(d_tmat)
+        self.mul(a_tmat)
+        self.mul(alpha_tmat)
 
         self.chain += "P" if sigma else "R"
 
