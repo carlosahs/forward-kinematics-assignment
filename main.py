@@ -120,7 +120,7 @@ def GENFK(
     a: np.ndarray, alpha: np.ndarray,
     d: np.ndarray, theta: np.ndarray,
     sigma: np.ndarray
-) -> Transformation_Matrix:
+) -> DH_Transformation_Matrix:
     dh = DH_Transformation_Matrix()
 
     for thetai, di, ai, alphai, sigmai in zip(
