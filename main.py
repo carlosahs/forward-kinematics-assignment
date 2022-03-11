@@ -110,9 +110,8 @@ def FK(L: Tuple[int, int], q: Tuple[int, int]) -> Tuple[int, int]:
     """
     Solves the forward kinematics of a planar 2R robot.
 
-    Returns:
-        @P (Tuple[int, int]): 2 by 1 vector containing the end effector's x and y 
-            coordinates expressed in the base frame.
+    @returns P (Tuple[int, int]): 2 by 1 vector containing the end effector's x and y 
+        coordinates expressed in the base frame.
     """
 
     q_sum = sum(q)
