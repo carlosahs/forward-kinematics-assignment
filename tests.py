@@ -58,6 +58,9 @@ class Test_rot(unittest.TestCase):
         self.rot_helper(Axis.Z)
 
 class Test_Transformation_Matrix(unittest.TestCase):
+    def rot_helper(self, axis: Axis):
+        pass
+        
     def test_rot_x(self):
         pass
 
