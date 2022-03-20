@@ -7,6 +7,12 @@ from typing_extensions import Self
 
 AXES = 3
 
+EULER_VALID_GROUPS = [
+    "xyx", "xyz", "xzx", "xzy",
+    "yxy", "yxz", "yzx", "yzy",
+    "zxy", "zxz", "zyx", "zyz"
+]
+
 class Axis(Enum):
     X = 'x'
     Y = 'y'
