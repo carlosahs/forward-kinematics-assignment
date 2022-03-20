@@ -147,7 +147,7 @@ def GENFK(
 
     return dh.to_np_array()
 
-def rot2euler(R):
+def rot2euler(R: np.ndarray, axes="xyz") -> np.ndarray:
     pass
 
 def euler2rot(A):
