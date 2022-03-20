@@ -171,4 +171,32 @@ def quat2rot(Q):
 
 if __name__ == '__main__':
     # TODO
-    pass
+    two_dof_manipulator = {
+        "link_lengths": (10, 20),
+        "joint_values": (np.pi / 6, np.pi / 2)
+    }
+
+    print("======2 DOF tests:")
+    print(f"1. {two_dof_manipulator}")
+    print(FK(
+        two_dof_manipulator["link_lengths"], 
+        two_dof_manipulator["joint_values"]
+    ))
+
+    two_dof_manipulator["link_lengths"] = (4, 3)
+    two_dof_manipulator["joint_values"] = (np.pi, 0)
+
+    print(f"2. {two_dof_manipulator}")
+    print(FK(
+        two_dof_manipulator["link_lengths"], 
+        two_dof_manipulator["joint_values"]
+    ))
+
+    two_dof_manipulator["link_lengths"] = (4, 3)
+    two_dof_manipulator["joint_values"] = (np.pi, 0)
+
+    print(f"3. {two_dof_manipulator}")
+    print(FK(
+        two_dof_manipulator["link_lengths"], 
+        two_dof_manipulator["joint_values"]
+    ))
