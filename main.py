@@ -138,8 +138,8 @@ def plot_FK(L: Tuple[int, int], q: Tuple[int, int], fk: Tuple[int, int]) -> None
     pass
 
 def GENFK(
-    a: np.ndarray, alpha: np.ndarray,
     d: np.ndarray, theta: np.ndarray,
+    a: np.ndarray, alpha: np.ndarray,    
     sigma: np.ndarray
 ) -> np.ndarray:
     dh = DH_Transformation_Matrix()
@@ -200,3 +200,14 @@ if __name__ == '__main__':
         two_dof_manipulator["link_lengths"], 
         two_dof_manipulator["joint_values"]
     ))
+
+    theta = np.array([np.pi / 12, 0])
+    d = np.array([10, 20])
+
+    a = np.array([5, 0])
+    alpha = np.array([np.pi / 2, 0])
+
+    sigma = np.array([False, True])
+    
+    print("======2 DOF seen in class tests:")
+    print(GENFK(d, theta, a, alpha, sigma))
