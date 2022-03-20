@@ -214,3 +214,14 @@ if __name__ == '__main__':
     
     print("======2 DOF seen in class tests:")
     print(GENFK(d, theta, a, alpha, sigma))
+
+    # GENFK for 6-axes robot in assignment
+    link_values = [10, 15, 20, 5, 6, 7, 8]
+    
+    theta = np.array([np.pi / 3, np.pi / 2, 0.0, np.pi, -np.pi / 3, np.pi])
+    d = np.array([L[0], ])
+
+    a = np.array([5, 0])
+    alpha = np.array([np.pi / 2, 0])
+
+    sigma = np.array([False, False, True, False, False, False])
