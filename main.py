@@ -154,6 +154,8 @@ def GENFK(
     return dh.to_np_array()
 
 def rot2euler(R: np.ndarray, axes="xyz") -> np.ndarray:
+    psi, theta, phi = 0.0, 0.0, 0.0
+    
     if axes in EULER_VALID_GROUPS:
         if axes[0] == Axis.X.value:
             neg_rot_x = rot()
