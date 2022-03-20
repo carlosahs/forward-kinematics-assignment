@@ -151,6 +151,8 @@ def GENFK(
     ):
         dh.compute_dh(thetai, di, ai, alphai, sigmai)
 
+    print(dh.chain)
+
     return dh.to_np_array()
 
 def rot2euler(R: np.ndarray, axes="xyz") -> np.ndarray:
