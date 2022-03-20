@@ -172,7 +172,7 @@ def quat2rot(Q):
     pass
 
 if __name__ == '__main__':
-    # TODO
+    # Test FK function with three different 2 DOF robots
     two_dof_manipulator = {
         "link_lengths": (10, 20),
         "joint_values": (np.pi / 6, np.pi / 2)
@@ -194,8 +194,8 @@ if __name__ == '__main__':
         two_dof_manipulator["joint_values"]
     ))
 
-    two_dof_manipulator["link_lengths"] = (4, 3)
-    two_dof_manipulator["joint_values"] = (np.pi, 0)
+    two_dof_manipulator["link_lengths"] = (24, 13)
+    two_dof_manipulator["joint_values"] = (np.pi / 18, np.pi / 3)
 
     print(f"3. {two_dof_manipulator}")
     print(FK(
@@ -203,6 +203,7 @@ if __name__ == '__main__':
         two_dof_manipulator["joint_values"]
     ))
 
+    # Define values for 2 DOF robot seen in class
     theta = np.array([np.pi / 12, 0])
     d = np.array([10, 20])
 
