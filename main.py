@@ -265,3 +265,6 @@ if __name__ == '__main__':
         False,
         False
     ])
+
+    print("======6 DOF robot from assignment:")
+    print(GENFK(d, theta, a, alpha, sigma))
