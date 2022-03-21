@@ -216,12 +216,52 @@ if __name__ == '__main__':
     print(GENFK(d, theta, a, alpha, sigma))
 
     # GENFK for 6-axes robot in assignment
-    link_values = [10, 15, 20, 5, 6, 7, 8]
+    link_values = [10.0, 15.0, 20.0, 5.0, 6.0, 7.0, 8.0]
     
-    theta = np.array([np.pi / 3, np.pi / 2, 0.0, np.pi, -np.pi / 3, np.pi])
-    d = np.array([L[0], ])
+    theta = np.array([
+        0.0,
+        np.pi,
+        np.pi / 2,
+        0.0,
+        np.pi / 3 + np.pi / 2,
+        np.pi / 4 + np.pi / 2,
+        np.pi
+    ])
+    d = np.array([
+        link_values[0],
+        link_values[1],
+        link_values[2],
+        link_values[3] + 13.0,
+        link_values[4],
+        0.0,
+        link_values[5] + link_values[6]
+    ])
 
-    a = np.array([5, 0])
-    alpha = np.array([np.pi / 2, 0])
+    a = np.array([
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+    ])
+    alpha = np.array([
+        0.0,
+        -np.pi / 2,
+        np.pi / 2,
+        0.0,
+        np.pi / 2,
+        np.pi / 2,
+        0.0
+    ])
 
-    sigma = np.array([False, False, True, False, False, False])
+    sigma = np.array([
+        False,
+        False,
+        True,
+        False,
+        False,
+        False,
+        False
+    ])
